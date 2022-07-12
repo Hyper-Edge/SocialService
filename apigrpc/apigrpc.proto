@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package socialservice.api;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+option go_package = "github.com/al3x3n0/socialservice/apigrpc";
+
+option csharp_namespace = "SocialService.Protobuf";
+
+
+message AppleProfile {
+	string ID = 1;
+	string Email = 2;
+	google.protobuf.BoolValue EmailVerified = 3;
+}
+
+message CheckGoogleTokenRequest {
+    string idToken = 1;
+}
+
+message CheckAppleTokenRequest {
+    string bundleId = 1;
+    string idToken = 2;
+}
+
+service Social {
+    // Add friends by ID or username to a user's account.
+    rpc CheckGoogleToken (CheckGoogleTokenRequest) returns (google.protobuf.Empty) {
+    }
+
+    rpc CheckAppleToken (CheckAppleTokenRequest) returns (google.protobuf.Empty) {
+    }
+
+}
+
